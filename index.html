@@ -13,7 +13,8 @@
           <div id="top-bar">
           </div>
           <li class="active">
-            <img src="home-icon.png" width="15" height="12" style="margin-right:10px;">EMBL-EBI</li>
+            <img src="home-icon.png" width="15" height="12" style="margin-right:10px;">EMBL-EBI
+          </li>
           <li class="active">Services</li>
           <li>Research</li>
           <li>Training</li>
@@ -45,7 +46,8 @@
           </ul>
         </li>
         <li title="Request help/support or give feedback" style="float:right">
-          <img src="feedback_logo.png" width="20" height="13">Feedback</li>
+          <img src="feedback_logo.png" width="20" height="13">Feedback
+        </li>
         <li class="active" title="Input form to submit new jobs">Input form</li>
         <li title="Programmatic access page for clustalo">Web services</li>
         <li title="Help page for clustalo">Help & Documentation</li>
@@ -58,7 +60,7 @@
     <p id="breadcrumb">Tools > Multiple Sequence Alignment > Clustal Omega</p>
     <p id="content-header">Multiple Sequence Alignment</p>
     <p id="description">Clustal Omega is a new multiple sequence alignment program that uses
-	seeded guide trees and HMM profile-profile techniques to generate alignments between
+      seeded guide trees and HMM profile-profile techniques to generate alignments between
       <b>three or more</b>sequences. For the alignment of two sequences please instead use our
       <u>pairwise sequence alignment tools</u>.
       <br>
@@ -66,10 +68,10 @@
       <b>Important note:</b>This tool can align up to 4000 sequences or a maximum file size of 4 MB.
       <br>
     </p>
-    <form>
+    <form onsubmit="return false;">
       <fieldset>
         <legend>STEP 1 - Enter your input sequences</legend>
-        <u>Enter or paste</u>a set of
+        <u>Enter or paste</u> a set of
         <BR>
         <select>
           <option>PROTEIN</option>
@@ -80,11 +82,11 @@
         <br>sequences in any supported
         <u>format</u>:
         <br>
-        <textarea rows=4 cols=50 name=seq>
+        <textarea rows=4 cols=50 id=seq name=seq>
         </textarea>
         <br>
         <br>Or,
-        <u>upload</u>a file:
+        <u>upload</u> a file:
         <input type=button value="Choose File" /> No file chosen
         <span>Use a
           <u>example sequence</u>|
@@ -120,7 +122,26 @@
         <i>(Tick this box if you want to be notified by email when the results are available)</i>
         <br>
         <br>
-        <input type="submit" value="Submit">
+        <button type = "submit" onclick="DNAStrand(document.getElementById('seq').value)">Submit</button>
+        <script>
+          function DNAStrand(dna) {
+            var dict = {
+              "A": "T",
+              "T": "A",
+              "G": "C",
+              "C": "G"
+            };
+
+            dna = dna.split("");
+
+            for (const i in dna) {
+              dna[i] = dict[dna[i]]
+            }
+
+            document.getElementById('seq').value = dna.join("");
+            //return dna.join("");
+          }
+        </script>
       </fieldset>
     </form>
     <p>If you use this service, please consider citing the following publication:
@@ -129,11 +150,12 @@
       </u>
       <br>
       <br>Please read the provided Help & Documentation and FAQs before seeking help from our
-	  support staff. If you have any feedback or encountered any issues please let us know via
+      support staff. If you have any feedback or encountered any issues please let us know via
       <u>EMBL-EBI Support</u>. If you plan to use these services during a course please
       <u>contact us</u>. Read our
       <u>Privacy Notice</u>if you are concerned with your privacy and how we handle personal
-	  information.</p>
+      information.
+    </p>
   </div>
   <footer>
     <div class="footer">
@@ -188,7 +210,7 @@
       </div>
       <br>
       <p style="color: #888; margin: 10px 0px 10px; padding: 0;">EMBL-EBI, Wellcome Genome Campus,
-	  Hinxton, Cambridgeshire, CB10 1SD, UK. +44 (0)1223 49 44 44</p>
+        Hinxton, Cambridgeshire, CB10 1SD, UK. +44 (0)1223 49 44 44</p>
       <p>Copyright © EMBL 2021 | EMBL-EBI is
         <u>part of the European Molecular Biology Laboratory</u>|
         <u>Terms of use</u>
